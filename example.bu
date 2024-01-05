@@ -1,0 +1,11 @@
+variant: fcos
+version: 1.4.0
+# Setup user
+passwd:
+  users:
+    - name: ${FCOS_USER}
+      groups:
+        - wheel
+        - sudo
+      ssh_authorized_keys:
+        - ${PUBLIC_SSH_KEY}
