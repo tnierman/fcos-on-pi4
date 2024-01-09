@@ -38,7 +38,7 @@ download-fcos-image: guard-CONTAINER_ENGINE guard-DOWNLOAD_DIR  ## download-fcos
 generate-ignition: guard-CONTAINER_ENGINE guard-BUTANE_FILE guard-CONTAINER_NAME create-builder-image ## generate-ignition creates the ignition file from the provided $BUTANE_FILE
 	@echo
 	@echo "$$(tput bold)Creating ignition file$$(tput sgr0)"
-	${CONTAINER_ENGINE} run --mount type=bind,source=${BUTANE_FILE},target=/build/config.bu,readonly --env-host ${CONTAINER_NAME}:latest ./generate-ignition.sh > config.ign
+	${CONTAINER_ENGINE} run --mount type=bind,source=${BUTANE_FILE},target=/build/config.bu,readonly --env-file <(env) ${CONTAINER_NAME}:latest ./generate-ignition.sh > config.ign
 	@echo "config.ign:"
 	@cat config.ign
 
