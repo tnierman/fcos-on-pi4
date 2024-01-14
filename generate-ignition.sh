@@ -21,7 +21,7 @@ echo "${vars}" | while read var;
 do
   # Hacky as shit, but get the name contained in the '${variable}' format
   var_name="$(echo ${var} | awk -F{ '{print $2}' | awk -F} '{print $1}')"
-  if [[ -z $(printenv | grep "${var_name}") ]];
+  if [[ -z "${!var_name}" ]];
   then
     err
     err
